@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import useActiveSection from '../hooks/useActiveSection'
 
 function useCurrentTime() {
   const [time, setTime] = useState('')
@@ -21,28 +22,17 @@ function useCurrentTime() {
   return time
 }
 
-function useActiveHash() {
-  const [hash, setHash] = useState(typeof window !== 'undefined' ? window.location.hash : '')
-
-  useEffect(() => {
-    const onHashChange = () => setHash(window.location.hash)
-    window.addEventListener('hashchange', onHashChange)
-    return () => window.removeEventListener('hashchange', onHashChange)
-  }, [])
-
-  return hash
-}
-
 const LINKS = [
-  { href: '#about', label: '(About)' },
-  { href: '#projects', label: '(Projects)' },
-  { href: '#stack', label: '(Stack)' },
-  { href: '#contact', label: '(Contact)' },
+  { id: 'index', href: '#index', label: '(Index)' },
+  { id: 'about', href: '#about', label: '(About)' },
+  { id: 'projects', href: '#projects', label: '(Projects)' },
+  { id: 'stack', href: '#stack', label: '(Stack)' },
+  { id: 'contact', href: '#contact', label: '(Contact)' },
 ]
 
 export default function Navbar() {
   const time = useCurrentTime()
-  const activeHash = useActiveHash()
+  const activeSection = useActiveSection('index')
 
   return (
     <nav className="flex items-center justify-between px-10 py-6 md:px-16">
@@ -52,9 +42,9 @@ export default function Navbar() {
 
       <ul className="hidden sm:flex gap-3 text-sm font-medium text-neutral-900">
         {LINKS.map((link) => {
-          const isActive = activeHash === link.href
+          const isActive = activeSection === link.id
           return (
-            <li key={link.href}>
+            <li key={link.id}>
               <a
                 href={link.href}
                 className={`transition-colors ${
@@ -70,7 +60,7 @@ export default function Navbar() {
         })}
       </ul>
 
-      <span className="hidden md:block text-xs text-neutral-400 tabular-nums">
+      <span className="hidden md:block text-sm font-medium text-neutral-900 tabular-nums">
         {time}
       </span>
     </nav>

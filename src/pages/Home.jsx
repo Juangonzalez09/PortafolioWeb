@@ -1,8 +1,10 @@
-import Navbar from '../components/Navbar'
+import Hero from '../components/sections/Hero'
+import About from '../components/sections/About'
+import { LanguageProvider } from '../context/LanguageContext'
 
 function TechBackground() {
   return (
-    <div className="absolute inset-0 z-0">
+    <div className="fixed inset-0 z-0">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,#0f172a_0%,#000000_50%,#0c0a09_100%)]" />
 
       <div
@@ -39,37 +41,14 @@ function TechBackground() {
 
 export default function Home() {
   return (
-    <section className="relative flex min-h-screen items-center justify-center px-6 py-10 overflow-hidden">
-      <TechBackground />
-
-      <div className="relative z-10 flex min-h-[85vh] w-full max-w-5xl flex-col bg-white shadow-2xl">
-        <Navbar />
-
-        <div className="flex flex-1 flex-col justify-between px-10 pb-10 pt-6 md:px-16">
-          <div className="flex justify-end pt-16">
-            <div className="max-w-sm">
-              <span className="mb-4 block text-base text-neutral-400">(1)</span>
-              <p className="text-base leading-relaxed text-neutral-400 capitalize">
-                <span className="text-neutral-900 font-medium">Software Engineer</span> Focused On
-                Backend Development And Data Engineering,
-                Leveraging AWS And Cloud Infrastructure To
-                Deliver Robust Solutions. Experienced In
-                Networking And Server Management — A
-                Versatile, Ever-Evolving Profile Committed
-                To Mastering The Full Spectrum Of
-                Technology.
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-auto">
-            <span className="mb-2 block text-sm text-neutral-400">(2)</span>
-            <h1 className="font-serif text-[clamp(2.5rem,7vw,7.5rem)] leading-[0.85] tracking-tight text-neutral-900">
-              Juan Manuel<br />Gonzalez
-            </h1>
-          </div>
+    <LanguageProvider defaultLang="es">
+      <div className="relative">
+        <TechBackground />
+        <div className="relative z-10">
+          <Hero />
+          <About />
         </div>
       </div>
-    </section>
+    </LanguageProvider>
   )
 }
