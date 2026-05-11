@@ -2,6 +2,8 @@ import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import { useRef, useState, useEffect } from 'react'
 import useActiveSection from '../../hooks/useActiveSection'
 import { useLanguage } from '../../context/LanguageContext'
+import useHoverAudio from '../../hooks/useHoverAudio'
+import interstellarSrc from '../../assets/interstellar.mp3'
 import { FaAws } from 'react-icons/fa6'
 import { SiPython, SiReact, SiAngular, SiApacheairflow } from 'react-icons/si'
 import { VscAzureDevops } from 'react-icons/vsc'
@@ -120,6 +122,7 @@ function ProjectCard({ project, isFirst, isLast }) {
   const content = project[lang]
   const time = useCurrentTime()
   const activeSection = useActiveSection('index')
+  const { onEnter: audioEnter, onLeave: audioLeave } = useHoverAudio(interstellarSrc, { volume: 0.3, startAt: 20 })
 
   return (
     <div className="relative flex h-screen w-full items-center justify-center overflow-hidden bg-white">
@@ -371,8 +374,8 @@ function ProjectCard({ project, isFirst, isLast }) {
 
       {/* Center video card */}
       <motion.div
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
+        onMouseEnter={() => { setHovered(true); audioEnter() }}
+        onMouseLeave={() => { setHovered(false); audioLeave() }}
         animate={{
           scale: hovered ? 0.98 : 1,
           boxShadow: hovered
