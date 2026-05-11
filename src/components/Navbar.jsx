@@ -25,8 +25,7 @@ function useCurrentTime() {
 const LINKS = [
   { id: 'index', href: '#index', label: '(Index)' },
   { id: 'about', href: '#about', label: '(About)' },
-  { id: 'projects', href: '#projects', label: '(Projects)' },
-  { id: 'stack', href: '#stack', label: '(Stack)' },
+  { id: 'projects', href: '#projects', label: '(Projects & Stack)' },
   { id: 'contact', href: '#contact', label: '(Contact)' },
 ]
 
