@@ -5,8 +5,8 @@ import Navbar from '../Navbar'
 import LangToggle from '../LangToggle'
 import { useLanguage } from '../../context/LanguageContext'
 import medellinImg from '../../assets/Medellin.jpg'
-import contactoImg from '../../assets/Contacto.jpg'
-import openToWorkImg from '../../assets/OpenToWork.jpg'
+import ContactTerminal from '../ContactTerminal'
+import OpportunityRadar from '../OpportunityRadar'
 
 const CONTENT = {
   es: {
@@ -130,9 +130,8 @@ export default function Contact() {
 
             {/* Card 2 — Contact links */}
             <motion.div variants={fadeUp} transition={transition}>
-              <div className="group relative aspect-[4/5] w-full overflow-hidden rounded-lg bg-neutral-200">
-                <img src={contactoImg} alt="Contact" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-lg">
+                <ContactTerminal />
               </div>
               <div className="mt-3">
                 <span className="text-xs text-neutral-400">({t.card2.label})</span>
@@ -185,9 +184,8 @@ export default function Contact() {
 
             {/* Card 3 — Open to work */}
             <motion.div variants={fadeUp} transition={transition}>
-              <div className="group relative aspect-[3/4] w-full overflow-hidden rounded-lg bg-neutral-200">
-                <img src={openToWorkImg} alt="Open to Work" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+              <div className="relative aspect-[3/4] w-full overflow-hidden rounded-lg">
+                <OpportunityRadar />
               </div>
               <div className="mt-3">
                 <span className="text-xs text-neutral-400">({t.card3.label})</span>
