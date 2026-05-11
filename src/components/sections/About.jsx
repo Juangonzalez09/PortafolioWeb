@@ -4,7 +4,7 @@ import { ArrowUpRight } from 'lucide-react'
 import Navbar from '../Navbar'
 import LangToggle from '../LangToggle'
 import { useLanguage } from '../../context/LanguageContext'
-import portraitImg from '../../assets/portrait.jpg'
+import TechSolarSystem from '../TechSolarSystem'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -45,7 +45,7 @@ export default function About() {
       ref={ref}
       id="about"
       data-section="about"
-      className="relative flex min-h-screen items-center justify-center px-6 py-10"
+      className="relative flex min-h-screen items-center justify-center px-3 py-6 sm:px-4 md:px-6 md:py-10"
     >
       <motion.div
         style={{ y: cardY, opacity: cardOpacity }}
@@ -58,27 +58,15 @@ export default function About() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
           transition={{ staggerChildren: 0.15, delayChildren: 0.2 }}
-          className="grid flex-1 grid-cols-1 gap-10 px-10 pb-10 pt-6 md:grid-cols-2 md:gap-16 md:px-16"
+          className="grid flex-1 grid-cols-1 gap-6 px-5 pb-6 pt-4 sm:gap-8 sm:px-8 md:grid-cols-2 md:gap-12 md:px-10 md:pb-10 md:pt-6 lg:gap-16 lg:px-16"
         >
-          {/* Image column */}
+          {/* Tech Solar System */}
           <motion.div variants={fadeUp} transition={transition} className="flex items-start">
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="group relative aspect-[3/4] w-full overflow-hidden rounded-2xl bg-neutral-200 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.3)] before:absolute before:inset-0 before:-z-10 before:rounded-2xl before:bg-neutral-900/10 before:blur-2xl"
-            >
-              <img
-                src={portraitImg}
-                alt="Juan Manuel Gonzalez"
-                className="h-full w-full object-cover grayscale-[15%] transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105"
-              />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
-              <div className="pointer-events-none absolute inset-0 rounded-2xl shadow-[inset_0_0_60px_rgba(255,255,255,0.15)]" />
-            </motion.div>
+            <TechSolarSystem />
           </motion.div>
 
           {/* Content column */}
-          <div className="flex flex-col gap-10">
+          <div className="flex flex-col gap-6 sm:gap-8 md:gap-10">
             <motion.div variants={fadeUp} transition={transition}>
               <div className="mb-3 flex items-center justify-between">
                 <span className="text-base text-neutral-400">(About)</span>

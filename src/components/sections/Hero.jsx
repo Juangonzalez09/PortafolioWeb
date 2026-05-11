@@ -104,7 +104,7 @@ export default function Hero() {
       ref={ref}
       id="index"
       data-section="index"
-      className="relative flex min-h-screen items-center justify-center px-6 py-10"
+      className="relative flex min-h-screen items-center justify-center px-3 py-6 sm:px-4 md:px-6 md:py-10"
     >
       <motion.div
         style={{ opacity, scale, y }}
@@ -112,13 +112,13 @@ export default function Hero() {
       >
         <Navbar />
 
-        <div className="flex flex-1 flex-col justify-between px-10 pb-10 pt-6 md:px-16">
+        <div className="flex flex-1 flex-col justify-between px-5 pb-6 pt-4 sm:px-8 sm:pb-8 md:px-10 md:pb-10 md:pt-6 lg:px-16">
           {/* Top row: stack icons (left) + description (right) */}
-          <div className="grid grid-cols-1 gap-10 pt-16 md:grid-cols-2 md:gap-16">
+          <div className="grid grid-cols-1 gap-6 pt-8 sm:gap-8 sm:pt-12 md:grid-cols-2 md:gap-12 md:pt-16 lg:gap-16">
             {/* Stack icons — left column */}
             <div className="flex flex-col">
-              <span className="mb-6 block text-base text-neutral-400">(Stack)</span>
-              <ul className="flex flex-wrap items-start gap-6 md:gap-8">
+              <span className="mb-4 block text-sm sm:text-base text-neutral-400">(Stack)</span>
+              <ul className="flex flex-wrap items-start gap-4 sm:gap-5 md:gap-6 lg:gap-8">
                 {STACK.map((item, i) => (
                   <FloatingIcon key={item.label} {...item} index={i} />
                 ))}
@@ -139,7 +139,7 @@ export default function Hero() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -8 }}
                   transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                  className="text-base leading-relaxed text-neutral-400 capitalize"
+                  className="text-sm sm:text-base leading-relaxed text-neutral-400 capitalize"
                 >
                   <span className="text-neutral-900 font-medium">{t.role}</span>
                   {t.before}
@@ -155,7 +155,7 @@ export default function Hero() {
           {/* Name — bottom */}
           <div>
             <span className="mb-2 block text-sm text-neutral-400">(2)</span>
-            <h1 className="font-serif text-[clamp(2.5rem,7vw,7.5rem)] leading-[0.85] tracking-tight text-neutral-900">
+            <h1 className="font-serif text-[clamp(1.8rem,6vw,7.5rem)] leading-[0.85] tracking-tight text-neutral-900">
               Juan Manuel<br />Gonzalez
             </h1>
           </div>

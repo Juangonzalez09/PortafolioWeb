@@ -34,12 +34,12 @@ export default function Navbar() {
   const activeSection = useActiveSection('index')
 
   return (
-    <nav className="flex items-center justify-between px-10 py-6 md:px-16">
-      <span className="font-serif text-2xl tracking-tight">
-        juanmax <sup className="text-xs">™</sup>
+    <nav className="flex items-center justify-between px-4 py-4 sm:px-6 md:px-10 md:py-6 lg:px-16">
+      <span className="font-serif text-xl sm:text-2xl tracking-tight">
+        juanmax <sup className="text-[8px] sm:text-xs">™</sup>
       </span>
 
-      <ul className="hidden sm:flex gap-3 text-sm font-medium text-neutral-900">
+      <ul className="hidden sm:flex gap-2 md:gap-3 text-xs md:text-sm font-medium text-neutral-900">
         {LINKS.map((link) => {
           const isActive = activeSection === link.id
           return (
@@ -59,7 +59,7 @@ export default function Navbar() {
         })}
       </ul>
 
-      <span className="hidden md:block text-sm font-medium text-neutral-900 tabular-nums">
+      <span className="hidden md:block text-xs lg:text-sm font-medium text-neutral-900 tabular-nums">
         {time}
       </span>
     </nav>

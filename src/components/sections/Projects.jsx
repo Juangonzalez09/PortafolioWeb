@@ -151,13 +151,13 @@ function ProjectCard({ project, isFirst, isLast }) {
           color: hovered ? '#ffffff' : '#171717',
         }}
         transition={{ duration: 0.4 }}
-        className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between px-10 pt-14 pb-6 md:px-16"
+        className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between px-4 pt-8 pb-4 sm:px-6 sm:pt-10 md:px-10 md:pt-14 md:pb-6 lg:px-16"
       >
-        <span className="font-serif text-2xl tracking-tight shrink-0">
-          juanmax <sup className="text-xs">™</sup>
+        <span className="font-serif text-lg sm:text-xl md:text-2xl tracking-tight shrink-0">
+          juanmax <sup className="text-[7px] sm:text-[8px] md:text-xs">™</sup>
         </span>
 
-        <ul className="absolute left-1/2 -translate-x-1/2 flex gap-3 text-sm font-medium">
+        <ul className="absolute left-1/2 -translate-x-1/2 flex gap-1.5 sm:gap-2 md:gap-3 text-[9px] sm:text-xs md:text-sm font-medium">
           {[
             { id: 'index', label: '(Index)' },
             { id: 'about', label: '(About)' },
@@ -177,7 +177,7 @@ function ProjectCard({ project, isFirst, isLast }) {
           ))}
         </ul>
 
-        <span className="text-sm font-medium tabular-nums shrink-0">
+        <span className="hidden sm:block text-xs md:text-sm font-medium tabular-nums shrink-0">
           {time}
         </span>
       </motion.nav>
@@ -187,7 +187,7 @@ function ProjectCard({ project, isFirst, isLast }) {
         <motion.span
           animate={{ color: hovered ? 'rgba(255,255,255,0.7)' : '#171717' }}
           transition={{ duration: 0.4 }}
-          className="absolute left-10 top-1/2 z-10 -translate-y-1/2 text-sm font-semibold uppercase tracking-[0.15em] md:left-16"
+          className="absolute left-4 top-1/2 z-10 -translate-y-1/2 text-xs sm:text-sm font-semibold uppercase tracking-[0.15em] sm:left-6 md:left-10 lg:left-16"
         >
           (Previous)
         </motion.span>
@@ -198,7 +198,7 @@ function ProjectCard({ project, isFirst, isLast }) {
         <motion.span
           animate={{ color: hovered ? 'rgba(255,255,255,0.7)' : '#171717' }}
           transition={{ duration: 0.4 }}
-          className="absolute right-10 top-1/2 z-10 -translate-y-1/2 text-sm font-semibold uppercase tracking-[0.15em] md:right-16"
+          className="absolute right-4 top-1/2 z-10 -translate-y-1/2 text-xs sm:text-sm font-semibold uppercase tracking-[0.15em] sm:right-6 md:right-10 lg:right-16"
         >
           (Next)
         </motion.span>
@@ -208,13 +208,13 @@ function ProjectCard({ project, isFirst, isLast }) {
       <motion.div
         animate={{ opacity: hovered ? 0 : 0.08, filter: hovered ? 'blur(0px)' : 'blur(3px)' }}
         transition={{ duration: 0.4 }}
-        className="pointer-events-none absolute bottom-8 left-6 z-[1] overflow-hidden md:bottom-12 md:left-12"
+        className="pointer-events-none absolute bottom-4 left-3 z-[1] overflow-hidden sm:bottom-6 sm:left-4 md:bottom-12 md:left-12"
         style={{ filter: 'blur(3px)' }}
       >
-        <span className="block text-[clamp(6rem,14vw,13rem)] italic leading-[0.9] tracking-[-0.02em] text-neutral-900 select-none" style={{ fontFamily: "'DM Serif Display', serif" }}>
+        <span className="block text-[clamp(3rem,12vw,13rem)] italic leading-[0.9] tracking-[-0.02em] text-neutral-900 select-none" style={{ fontFamily: "'DM Serif Display', serif" }}>
           Juan
         </span>
-        <span className="block text-[clamp(6rem,14vw,13rem)] italic leading-[0.9] tracking-[-0.02em] text-neutral-900 select-none" style={{ fontFamily: "'DM Serif Display', serif" }}>
+        <span className="block text-[clamp(3rem,12vw,13rem)] italic leading-[0.9] tracking-[-0.02em] text-neutral-900 select-none" style={{ fontFamily: "'DM Serif Display', serif" }}>
           Manuel
         </span>
       </motion.div>
@@ -227,13 +227,13 @@ function ProjectCard({ project, isFirst, isLast }) {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.5, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute left-10 top-28 z-10 md:left-16"
+            className="absolute left-4 top-20 z-10 sm:left-6 sm:top-24 md:left-10 md:top-28 lg:left-16"
           >
-            <span className="mb-2 block text-[10px] font-medium uppercase tracking-[0.2em] text-white/50">
+            <span className="mb-2 block text-[8px] sm:text-[10px] font-medium uppercase tracking-[0.2em] text-white/50">
               {content.topLeft.label}
             </span>
             {content.topLeft.lines.map((line, i) => (
-              <p key={i} className="text-sm font-bold uppercase tracking-[0.08em] text-white leading-snug">
+              <p key={i} className="text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-[0.08em] text-white leading-snug">
                 {line}
               </p>
             ))}
@@ -254,13 +254,13 @@ function ProjectCard({ project, isFirst, isLast }) {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 20 }}
             transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute right-10 top-28 z-10 text-right md:right-16"
+            className="absolute right-4 top-20 z-10 text-right sm:right-6 sm:top-24 md:right-10 md:top-28 lg:right-16"
           >
-            <span className="mb-2 block text-[10px] font-medium uppercase tracking-[0.2em] text-white/50">
+            <span className="mb-2 block text-[8px] sm:text-[10px] font-medium uppercase tracking-[0.2em] text-white/50">
               {content.topRight.label}
             </span>
             {content.topRight.lines.map((line, i) => (
-              <p key={i} className="text-sm font-bold uppercase tracking-[0.08em] text-white leading-snug">
+              <p key={i} className="text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-[0.08em] text-white leading-snug">
                 {line}
               </p>
             ))}
@@ -281,7 +281,7 @@ function ProjectCard({ project, isFirst, isLast }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
             transition={{ duration: 0.5, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute left-10 top-1/2 -translate-y-1/2 z-10 max-w-[22rem] md:left-16"
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 max-w-[10rem] sm:max-w-[14rem] md:max-w-[18rem] sm:left-6 md:left-10 lg:left-16 lg:max-w-[22rem]"
           >
             <p className="text-[11px] leading-relaxed text-white/50">
               {content.leftDesc}
@@ -298,13 +298,13 @@ function ProjectCard({ project, isFirst, isLast }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.5, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute bottom-16 left-10 z-10 md:left-16"
+            className="absolute bottom-8 left-4 z-10 sm:bottom-12 sm:left-6 md:bottom-16 md:left-10 lg:left-16"
           >
-            <span className="mb-2 block text-[10px] font-medium uppercase tracking-[0.2em] text-white/50">
+            <span className="mb-2 block text-[8px] sm:text-[10px] font-medium uppercase tracking-[0.2em] text-white/50">
               {content.bottomLeft.label}
             </span>
             {content.bottomLeft.lines.map((line, i) => (
-              <p key={i} className="text-xs font-bold uppercase tracking-[0.08em] text-white leading-relaxed">
+              <p key={i} className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.08em] text-white leading-relaxed">
                 {line}
               </p>
             ))}
@@ -325,13 +325,13 @@ function ProjectCard({ project, isFirst, isLast }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute bottom-16 right-10 z-10 text-right md:right-16"
+            className="absolute bottom-8 right-4 z-10 text-right sm:bottom-12 sm:right-6 md:bottom-16 md:right-10 lg:right-16"
           >
-            <span className="mb-2 block text-[10px] font-medium uppercase tracking-[0.2em] text-white/50">
+            <span className="mb-2 block text-[8px] sm:text-[10px] font-medium uppercase tracking-[0.2em] text-white/50">
               {content.bottomRight.label}
             </span>
             {content.bottomRight.lines.map((line, i) => (
-              <p key={i} className="text-xs font-bold uppercase tracking-[0.08em] text-white leading-relaxed">
+              <p key={i} className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.08em] text-white leading-relaxed">
                 {line}
               </p>
             ))}
@@ -380,7 +380,7 @@ function ProjectCard({ project, isFirst, isLast }) {
             : '0 15px 50px -10px rgba(0,0,0,0.25)',
         }}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        className="relative z-10 aspect-square w-64 cursor-pointer overflow-hidden md:w-[22rem]"
+        className="relative z-10 aspect-square w-44 cursor-pointer overflow-hidden sm:w-56 md:w-64 lg:w-[22rem]"
       >
         <video
           src={project.video}

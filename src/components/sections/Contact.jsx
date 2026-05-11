@@ -66,7 +66,7 @@ export default function Contact() {
       ref={ref}
       id="contact"
       data-section="contact"
-      className="relative flex min-h-screen items-center justify-center px-6 py-10"
+      className="relative flex min-h-screen items-center justify-center px-3 py-6 sm:px-4 md:px-6 md:py-10"
     >
       <motion.div
         style={{ y: cardY, opacity: cardOpacity }}
@@ -79,7 +79,7 @@ export default function Contact() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
           transition={{ staggerChildren: 0.15, delayChildren: 0.2 }}
-          className="px-10 pb-12 pt-4 md:px-16"
+          className="px-5 pb-8 pt-4 sm:px-8 md:px-10 md:pb-12 lg:px-16"
         >
           {/* Header */}
           <motion.div variants={fadeUp} transition={transition} className="mb-10 flex items-start justify-between">
@@ -102,7 +102,7 @@ export default function Contact() {
           </motion.div>
 
           {/* Gallery grid */}
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
             {/* Card 1 — Medellín */}
             <motion.div variants={fadeUp} transition={transition}>
               <div className="group relative aspect-[3/4] w-full overflow-hidden rounded-lg bg-neutral-200">

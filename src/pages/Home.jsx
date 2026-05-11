@@ -2,6 +2,7 @@ import Hero from '../components/sections/Hero'
 import About from '../components/sections/About'
 import Projects from '../components/sections/Projects'
 import Contact from '../components/sections/Contact'
+import RubikCube from '../components/RubikCube'
 import { LanguageProvider } from '../context/LanguageContext'
 
 function TechBackground() {
@@ -52,6 +53,7 @@ export default function Home() {
           <Projects />
           <Contact />
         </div>
+        <RubikCube />
       </div>
     </LanguageProvider>
   )
