@@ -13,8 +13,8 @@ export default function Marquee({ text = 'Software Engineer — Building With He
       <div className="relative flex-1 overflow-hidden py-2.5">
         <div className="flex animate-marquee whitespace-nowrap">
           {items.map((i) => (
-            <span key={i} className="mx-8 text-xs font-medium tracking-wider uppercase">
-              {text} <span className="mx-4 text-white/40">✦</span>
+            <span key={i} className="mx-4 text-[10px] font-medium tracking-wider uppercase sm:mx-6 sm:text-xs md:mx-8">
+              {text} <span className="mx-2 text-white/40 sm:mx-3 md:mx-4">✦</span>
             </span>
           ))}
         </div>
