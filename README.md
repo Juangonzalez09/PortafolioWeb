@@ -20,7 +20,7 @@ An editorial-style, minimalist single-page portfolio inspired by modern design s
 
 ## Live Demo
 
-🌐 **[portafolio-web-three-chi.vercel.app](https://portafolio-web-three-chi.vercel.app/)**
+🌐 **[juanmanueldev.website](https://www.juanmanueldev.website/)**
 
 ## Tech Stack
 

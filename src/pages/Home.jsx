@@ -1,5 +1,7 @@
 import Hero from '../components/sections/Hero'
 import About from '../components/sections/About'
+import Projects from '../components/sections/Projects'
+import Contact from '../components/sections/Contact'
 import { LanguageProvider } from '../context/LanguageContext'
 
 function TechBackground() {
@@ -41,12 +43,14 @@ function TechBackground() {
 
 export default function Home() {
   return (
-    <LanguageProvider defaultLang="es">
+    <LanguageProvider defaultLang="en">
       <div className="relative">
         <TechBackground />
         <div className="relative z-10">
           <Hero />
           <About />
+          <Projects />
+          <Contact />
         </div>
       </div>
     </LanguageProvider>
