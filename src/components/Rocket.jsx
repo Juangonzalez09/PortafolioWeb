@@ -21,10 +21,12 @@ const MAX_FLY_SCREENS = 1.8
 export default function Rocket() {
   const { scrollY } = useScroll()
   const secRef = useRef([])
+  const vhRef = useRef(typeof window !== 'undefined' ? window.innerHeight : 800)
   const [, force] = useState(0)
 
   useEffect(() => {
     const measure = () => {
+      vhRef.current = window.innerHeight
       secRef.current = SECTION_IDS
         .map((id) => document.getElementById(id))
         .filter(Boolean)
@@ -41,9 +43,9 @@ export default function Rocket() {
     return () => { clearTimeout(t); window.removeEventListener('resize', measure) }
   }, [])
 
-  // Spring-smooth the raw scroll so the rocket glides/coasts instead of snapping
-  // 1:1 to the scrollbar. Soft + coasty = extra-fluid flight.
-  const smooth = useSpring(scrollY, { stiffness: 58, damping: 16, mass: 0.85 })
+  // Spring-smooth the raw scroll so the rocket glides instead of snapping 1:1 —
+  // responsive (not laggy) but still smooth.
+  const smooth = useSpring(scrollY, { stiffness: 120, damping: 18, mass: 0.5 })
 
   // One continuous pass per section, starting the moment you enter it and
   // finishing within ~MAX_FLY_SCREENS so tall sections never freeze the rocket.
@@ -55,7 +57,7 @@ export default function Rocket() {
       if (v >= secs[k].top - 1) i = k
     }
     const s = secs[i]
-    const flyDist = Math.min(s.height, window.innerHeight * MAX_FLY_SCREENS)
+    const flyDist = Math.min(s.height, vhRef.current * MAX_FLY_SCREENS)
     return Math.min(Math.max((v - s.top) / Math.max(flyDist, 1), 0), 1)
   })
 
