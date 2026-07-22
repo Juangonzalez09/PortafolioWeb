@@ -2,21 +2,20 @@ import { motion, useScroll, useSpring, useTransform } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 
 const SECTION_IDS = ['index', 'about', 'projects', 'contact']
-// The rocket stays parked in the corner for the first part of each section
-// (while that section's animation plays), then flies across to the bottom-left
-// over the final stretch — i.e. it only "passes" as you leave for the next page.
-const FLY_START = 0.72
+// A pass completes over at most this many screens of scrolling, so very tall
+// sections don't leave the rocket frozen in the corner.
+const MAX_FLY_SCREENS = 1.8
 
 /**
  * Minimalist rocket that flies diagonally from the top-right corner down to the
  * bottom-left, passing *behind* the white cards (it sits on a z-layer between
  * the dark background and the content).
  *
- * - Exactly ONE pass per section — no looping, even in the tall sections. It
- *   waits parked in the corner while a section's animation plays and only flies
- *   off during the transition to the next section.
+ * - ONE continuous pass per section (no looping). The pass starts as soon as you
+ *   enter a section and finishes within ~1.8 screens, then the rocket coasts off
+ *   screen and fades — so it never sits frozen, even in the tall About section.
  * - Stays upright (never tilted); the flame + fluid motion sell the flight.
- * - Spring-smoothed scroll so the flight coasts instead of snapping 1:1, with a
+ * - Spring-smoothed scroll so the flight glides instead of snapping 1:1, with a
  *   launch animation on mount and a live thruster flame.
  */
 export default function Rocket() {
@@ -42,11 +41,12 @@ export default function Rocket() {
     return () => { clearTimeout(t); window.removeEventListener('resize', measure) }
   }, [])
 
-  // Spring-smooth the raw scroll so the rocket eases/coasts instead of snapping
-  // 1:1 to the scrollbar — this is what makes it read as flying, not floating.
-  const smooth = useSpring(scrollY, { stiffness: 85, damping: 20, mass: 0.55 })
+  // Spring-smooth the raw scroll so the rocket glides/coasts instead of snapping
+  // 1:1 to the scrollbar. Soft + coasty = extra-fluid flight.
+  const smooth = useSpring(scrollY, { stiffness: 58, damping: 16, mass: 0.85 })
 
-  // Per-section flight progress: 0 while parked, 0→1 across the section's tail.
+  // One continuous pass per section, starting the moment you enter it and
+  // finishing within ~MAX_FLY_SCREENS so tall sections never freeze the rocket.
   const flight = useTransform(smooth, (v) => {
     const secs = secRef.current
     if (!secs.length) return 0
@@ -55,20 +55,20 @@ export default function Rocket() {
       if (v >= secs[k].top - 1) i = k
     }
     const s = secs[i]
-    const p = Math.min(Math.max((v - s.top) / Math.max(s.height, 1), 0), 1)
-    if (p <= FLY_START) return 0
-    return (p - FLY_START) / (1 - FLY_START)
+    const flyDist = Math.min(s.height, window.innerHeight * MAX_FLY_SCREENS)
+    return Math.min(Math.max((v - s.top) / Math.max(flyDist, 1), 0), 1)
   })
 
-  // flight 0 → parked in the top-right corner (on-screen, visible).
-  // flight 1 → just off-screen bottom-left, so the reset is unseen.
-  const x = useTransform(flight, [0, 1], ['86vw', '-12vw'])
-  const y = useTransform(flight, [0, 1], ['7vh', '104vh'])
+  // flight 0 → top-right corner (on-screen, visible from the very start).
+  // flight 1 → off-screen bottom-left; it fades out on the way so the reset unseen.
+  const x = useTransform(flight, [0, 1], ['88vw', '-14vw'])
+  const y = useTransform(flight, [0, 1], ['7vh', '106vh'])
+  const opacity = useTransform(flight, [0, 0.88, 1], [1, 1, 0])
 
   return (
     <motion.div
       aria-hidden
-      style={{ x, y }}
+      style={{ x, y, opacity }}
       className="pointer-events-none fixed left-0 top-0 z-[5] will-change-transform"
     >
       {/* Launch-in on mount */}
