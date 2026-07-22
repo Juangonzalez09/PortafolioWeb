@@ -7,25 +7,33 @@ export default function useHoverAudio(src, { volume = 0.35, startAt = 0 } = {}) 
   const fadeRef = useRef(null)
   const wantRef = useRef(false) // whether we currently want to be playing
 
-  // Create + preload the audio eagerly on mount so the first hover doesn't
-  // have to wait on the network download (fixes the "takes a while" delay).
-  // Also unlock playback on the first real user gesture: a hover is NOT a
-  // user-activation gesture, so without this the browser autoplay policy can
-  // silently reject the first play() (fixes "sometimes it just doesn't sound").
-  useEffect(() => {
-    const audio = new Audio(src)
+  // Lazily create + configure the audio element (no network cost until load()).
+  const getAudio = useCallback(() => {
+    if (audioRef.current) return audioRef.current
+    const audio = new Audio()
     audio.loop = true
     audio.volume = 0
     audio.preload = 'auto'
+    audio.src = src
     if (startAt > 0) audio.currentTime = startAt
-    audio.load()
     audioRef.current = audio
+    return audio
+  }, [src, startAt])
+
+  // Defer the (heavy) audio download until the browser is idle, so it never
+  // competes with the initial page load — but it's still buffered well before
+  // the user scrolls down to the Projects section. Also unlock playback on the
+  // first real user gesture: a hover is NOT a user-activation gesture, so
+  // without this the autoplay policy can silently reject the first play().
+  useEffect(() => {
+    const warm = () => getAudio().load()
+    const idle =
+      typeof window.requestIdleCallback === 'function'
+        ? window.requestIdleCallback(warm, { timeout: 3000 })
+        : setTimeout(warm, 1500)
 
     const unlock = () => {
-      const a = audioRef.current
-      if (!a) return
-      // Play muted to satisfy the autoplay policy, then immediately pause
-      // unless the pointer is already over the target.
+      const a = getAudio()
       const p = a.play()
       if (p && typeof p.then === 'function') {
         p.then(() => {
@@ -37,13 +45,15 @@ export default function useHoverAudio(src, { volume = 0.35, startAt = 0 } = {}) 
     window.addEventListener('keydown', unlock, { once: true })
 
     return () => {
+      if (typeof window.cancelIdleCallback === 'function') window.cancelIdleCallback(idle)
+      else clearTimeout(idle)
       window.removeEventListener('pointerdown', unlock)
       window.removeEventListener('keydown', unlock)
       cancelAnimationFrame(fadeRef.current)
-      audio.pause()
+      if (audioRef.current) audioRef.current.pause()
       audioRef.current = null
     }
-  }, [src, startAt])
+  }, [getAudio])
 
   const fade = useCallback((target, onDone) => {
     const audio = audioRef.current
@@ -66,8 +76,7 @@ export default function useHoverAudio(src, { volume = 0.35, startAt = 0 } = {}) 
   }, [])
 
   const onEnter = useCallback(() => {
-    const audio = audioRef.current
-    if (!audio) return
+    const audio = getAudio()
     wantRef.current = true
     const p = audio.play()
     if (p && typeof p.then === 'function') {
@@ -79,7 +88,7 @@ export default function useHoverAudio(src, { volume = 0.35, startAt = 0 } = {}) 
     } else {
       fade(volume)
     }
-  }, [fade, volume])
+  }, [getAudio, fade, volume])
 
   const onLeave = useCallback(() => {
     const audio = audioRef.current

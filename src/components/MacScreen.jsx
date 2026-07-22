@@ -190,7 +190,7 @@ export default function MacScreen({ scrollYProgress }) {
                     className="overflow-hidden rounded-full ring-1 ring-white/40"
                     style={{ width: '12%', aspectRatio: '1/1', minWidth: 36 }}
                   >
-                    <img src={portraitImg} alt="" className="h-full w-full object-cover" />
+                    <img src={portraitImg} alt="" loading="lazy" decoding="async" className="h-full w-full object-cover" />
                   </div>
                   <div className="text-[0.85vw] font-medium text-white md:text-[0.55vw]">
                     Juan Manuel

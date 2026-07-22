@@ -106,7 +106,7 @@ export default function Contact() {
             {/* Card 1 — Medellín */}
             <motion.div variants={fadeUp} transition={transition}>
               <div className="group relative aspect-[3/4] w-full overflow-hidden rounded-lg bg-neutral-200">
-                <img src={medellinImg} alt="Medellín, Colombia" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <img src={medellinImg} alt="Medellín, Colombia" loading="lazy" decoding="async" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4">
                   <span className="text-xs font-medium text-white/70">{t.card1.location}</span>

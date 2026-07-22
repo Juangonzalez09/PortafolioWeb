@@ -73,6 +73,8 @@ export default function About() {
                         <img
                           src={profileImg}
                           alt="Juan Manuel Gonzalez"
+                          loading="lazy"
+                          decoding="async"
                           className="h-full w-full object-cover"
                           style={{ transform: 'scale(1.85)', transformOrigin: '50% 24%' }}
                         />
