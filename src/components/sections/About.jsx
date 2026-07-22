@@ -5,6 +5,7 @@ import Navbar from '../Navbar'
 import LangToggle from '../LangToggle'
 import { useLanguage } from '../../context/LanguageContext'
 import MacScreen from '../MacScreen'
+import profileImg from '../../assets/profile.jpg'
 
 const ABOUT_CONTENT = {
   es: {
@@ -65,8 +66,21 @@ export default function About() {
             {/* Content column */}
             <div className="flex flex-col gap-4 sm:gap-5 md:gap-6">
               <div>
-                <div className="mb-2 flex items-center justify-between">
-                  <span className="text-sm text-neutral-400">(About)</span>
+                <div className="mb-3 flex items-center justify-between">
+                  <div className="flex items-center gap-2.5">
+                    <div className="relative shrink-0">
+                      <div className="h-10 w-10 overflow-hidden rounded-full ring-2 ring-neutral-200 sm:h-11 sm:w-11">
+                        <img
+                          src={profileImg}
+                          alt="Juan Manuel Gonzalez"
+                          className="h-full w-full object-cover"
+                          style={{ transform: 'scale(1.85)', transformOrigin: '50% 24%' }}
+                        />
+                      </div>
+                      <span className="absolute bottom-0 right-0 h-2.5 w-2.5 rounded-full bg-emerald-500 ring-2 ring-white" />
+                    </div>
+                    <span className="text-sm text-neutral-400">(About)</span>
+                  </div>
                   <LangToggle />
                 </div>
 
