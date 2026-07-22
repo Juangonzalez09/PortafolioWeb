@@ -10,7 +10,7 @@ import OpportunityRadar from '../OpportunityRadar'
 
 const CONTENT = {
   es: {
-    intro: 'Si te interesa saber más de mí y contactarme — aquí estaré construyendo con propósito.',
+    intro: 'Si te interesa saber más de mí y contactarme, aquí estaré construyendo con propósito.',
     card1: {
       location: 'Medellín, Colombia',
       desc: 'Desde donde construyo soluciones con propósito.',
@@ -25,7 +25,7 @@ const CONTENT = {
     },
   },
   en: {
-    intro: "If you're interested in knowing more about me and reaching out — I'll be here building with purpose.",
+    intro: "If you're interested in knowing more about me and reaching out, I'll be here building with purpose.",
     card1: {
       location: 'Medellín, Colombia',
       desc: 'Where I build purposeful solutions from.',

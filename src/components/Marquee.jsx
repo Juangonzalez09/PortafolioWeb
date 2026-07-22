@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { X } from 'lucide-react'
 
-export default function Marquee({ text = 'Software Engineer — Building With Heart' }) {
+export default function Marquee({ text = 'Software Engineer · Building With Heart' }) {
   const [visible, setVisible] = useState(true)
 
   if (!visible) return null
