@@ -123,9 +123,28 @@ function ProjectCard({ project, isFirst, isLast }) {
   const time = useCurrentTime()
   const activeSection = useActiveSection('index')
   const { onEnter: audioEnter, onLeave: audioLeave } = useHoverAudio(interstellarSrc, { volume: 0.3, startAt: 20 })
+  const rootRef = useRef(null)
+  const videoRef = useRef(null)
+
+  // Only decode/play the preview video while the section is on screen — a
+  // looping video kept playing off-screen wastes decode work on every frame.
+  useEffect(() => {
+    const el = rootRef.current
+    const vid = videoRef.current
+    if (!el || !vid) return
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) vid.play().catch(() => {})
+        else vid.pause()
+      },
+      { threshold: 0.05 }
+    )
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
 
   return (
-    <div className="relative flex h-screen w-full items-center justify-center overflow-hidden bg-white">
+    <div ref={rootRef} className="relative flex h-screen w-full items-center justify-center overflow-hidden bg-white">
       {/* Expanded background video on hover */}
       <AnimatePresence>
         {hovered && (
@@ -386,11 +405,13 @@ function ProjectCard({ project, isFirst, isLast }) {
         className="relative z-10 aspect-square w-44 cursor-pointer overflow-hidden sm:w-56 md:w-64 lg:w-[22rem]"
       >
         <video
+          ref={videoRef}
           src={project.video}
           autoPlay
           muted
           loop
           playsInline
+          preload="metadata"
           className="h-full w-full object-cover"
         />
 
