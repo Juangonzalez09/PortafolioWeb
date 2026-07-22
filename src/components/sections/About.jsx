@@ -8,14 +8,14 @@ import MacScreen from '../MacScreen'
 
 const ABOUT_CONTENT = {
   es: {
-    p1: 'Soy un ingeniero de software joven, apasionado por la tecnología y por construir soluciones con propósito. Mi enfoque está en el desarrollo backend, la ingeniería de datos y la arquitectura en la nube — diseñando sistemas robustos, escalables y elegantes en su simplicidad.',
+    p1: 'Soy un ingeniero de software joven, apasionado por la tecnología y por construir soluciones con propósito. Mi enfoque está en la ingeniería cloud, la ingeniería de datos y las arquitecturas limpias, diseñando sistemas robustos, escalables y elegantes en su simplicidad.',
     p2: 'Trabajo principalmente con AWS, Python, Node.js y Spark, complementados con bases sólidas en redes y administración de servidores. Cada proyecto es una oportunidad para evolucionar, mezclar disciplinas y crear soluciones donde la precisión se encuentra con el propósito.',
-    p3: 'Soy el tipo de ingeniero que querrías en tu equipo — porque no hay nada mejor que trabajar con personas que aman lo que hacen y no ven su trabajo como una obligación, sino como un espacio para crear, aprender y crecer.',
+    p3: 'Soy el tipo de ingeniero que querrías en tu equipo, porque no hay nada mejor que trabajar con personas que aman lo que hacen y no ven su trabajo como una obligación, sino como un espacio para crear, aprender y crecer.',
   },
   en: {
-    p1: "I'm a young software engineer, passionate about technology and building purposeful solutions. My focus lies in backend development, data engineering and cloud architecture — designing systems that are robust, scalable and elegant in their simplicity.",
+    p1: "I'm a young software engineer, passionate about technology and building purposeful solutions. My focus lies in cloud engineering, data engineering and clean architecture, designing systems that are robust, scalable and elegant in their simplicity.",
     p2: 'I work primarily with AWS, Python, Node.js and Spark, complemented by strong foundations in networking and server management. Every project is an opportunity to evolve, blend disciplines, and craft solutions where precision meets purpose.',
-    p3: "I'm the kind of engineer you'd want on your team — because there's nothing better than working with people who love what they do, and who see their work not as an obligation, but as a space to create, learn and grow.",
+    p3: "I'm the kind of engineer you'd want on your team, because there's nothing better than working with people who love what they do, and who see their work not as an obligation, but as a space to create, learn and grow.",
   },
 }
 

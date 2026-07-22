@@ -3,6 +3,7 @@ import About from '../components/sections/About'
 import Projects from '../components/sections/Projects'
 import Contact from '../components/sections/Contact'
 import RubikCube from '../components/RubikCube'
+import Rocket from '../components/Rocket'
 import { LanguageProvider } from '../context/LanguageContext'
 
 function TechBackground() {
@@ -47,6 +48,7 @@ export default function Home() {
     <LanguageProvider defaultLang="en">
       <div className="relative">
         <TechBackground />
+        <Rocket />
         <div className="relative z-10">
           <Hero />
           <About />
